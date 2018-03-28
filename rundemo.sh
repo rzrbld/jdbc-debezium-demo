@@ -2,7 +2,8 @@
 mkdir -p /opt/debezium && \
 curl -fSL -o /tmp/postinstall.zip \
              https://github.com/rzrbld/jdbc-debezium-postinstall/archive/master.zip &&\
-mkdir /tmp/postinstall && \
+rm -rf /tmp/postinstall
+mkdir -p /tmp/postinstall && \
 unzip /tmp/postinstall.zip -d /tmp/postinstall/ &&\
 rm -rf /tmp/postinstall.zip &&\
 chmod +x /tmp/postinstall/jdbc-debezium-postinstall-master/register-connectors.sh && \
