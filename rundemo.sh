@@ -18,6 +18,6 @@ tmux send-keys -t debeziumdemo:0 "export DEBEZIUM_VERSION=0.7 && cd /opt/debeziu
 sleep 70 &&
 tmux send-keys -t debeziumdemo:4 "/tmp/postinstall/jdbc-debezium-postinstall-master/register-connectors.sh" C-m
 tmux send-keys -t debeziumdemo:1 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec kafka /kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --from-beginning --property print.key=true --topic customers " C-m
-tmux send-keys -t debeziumdemo:2 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec postgres env PGOPTIONS=\"--search_path=inventory\" bash -c 'psql -U $POSTGRES_USER postgres' " C-m
+tmux send-keys -t debeziumdemo:2 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec postgres env PGOPTIONS=\"--search_path=inventory\" bash -c 'psql -U $POSTGRES_USER postgres' -c \"SELECT * FROM inventory.customers;\" " C-m
 tmux send-keys -t debeziumdemo:3 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec connect sqlite3 /kafka/consumers.db \"SELECT * FROM customers;\"" C-m
 byobu attach-session -t debeziumdemo
