@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -rf /opt/debezium
 rm -rf /tmp/postinstall
 curl -fSL -o /tmp/postinstall.zip \
              https://github.com/rzrbld/jdbc-debezium-postinstall/archive/master.zip &&\
