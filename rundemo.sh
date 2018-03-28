@@ -15,7 +15,7 @@ byobu new-window -t debeziumdemo:2 -n postgres &&\
 byobu new-window -t debeziumdemo:3 -n sqlite &&\
 byobu new-window -t debeziumdemo:4 -n post &&\
 tmux send-keys -t debeziumdemo:0 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml up " C-m
-sleep 70 &&
+sleep 90 &&
 tmux send-keys -t debeziumdemo:4 "/tmp/postinstall/jdbc-debezium-postinstall-master/register-connectors.sh" C-m
 tmux send-keys -t debeziumdemo:1 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec kafka /kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --from-beginning --property print.key=true --topic customers " C-m
 tmux send-keys -t debeziumdemo:2 "export DEBEZIUM_VERSION=0.7 && cd /opt/debezium; docker-compose -f docker-compose-debezium-demo.yaml exec postgres env PGOPTIONS=\"--search_path=inventory\" bash -c 'psql -U $POSTGRES_USER postgres -c \"SELECT * FROM inventory.customers;\" ' " C-m
